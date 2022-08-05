@@ -1,7 +1,7 @@
 #pragma once
 
 namespace Game {
-	class Field {
+	class Team {
 	private:
 
 	public:
