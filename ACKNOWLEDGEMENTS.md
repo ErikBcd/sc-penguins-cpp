@@ -1,4 +1,4 @@
-# Acknoledgements
+# Acknowledgements
 
 ## pugixml
  * https://github.com/zeux/pugixml
