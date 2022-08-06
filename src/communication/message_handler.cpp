@@ -73,7 +73,7 @@ namespace Game_Communication
             }
             x++;
         }
-        gameState.
+        gameState.setBoard(board);
         x = 0;
         for (pugi::xml_node stateNode : room.child("data").child("state").child("fishes").children()) {
             if (x == 0) { gameState.setFishesOne(stateNode.attribute("int").as_int()); }
