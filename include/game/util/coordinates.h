@@ -39,7 +39,7 @@ namespace Coordinates {
 
 		struct DoubledHex;
 
-		static struct VectorDirections
+		struct VectorDirections
 		{
 			/*GameVector LEFT = GameVector(+2, 0);
 			GameVector RIGHT;

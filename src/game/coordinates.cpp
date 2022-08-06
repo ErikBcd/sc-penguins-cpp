@@ -64,13 +64,5 @@ namespace Coordinates {
 
 		GameVector directions[6] = { LEFT, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT };
 	};
-	/*GameVector VectorDirections::LEFT = GameVector(+2, 0);
-	GameVector VectorDirections::RIGHT = GameVector(-2, 0);
-	GameVector VectorDirections::UP_LEFT = GameVector(-1, -1);
-	GameVector VectorDirections::UP_RIGHT = GameVector(+1, -1);
-	GameVector VectorDirections::DOWN_LEFT = GameVector(-1, +1);
-	GameVector VectorDirections::DOWN_RIGHT = GameVector(+1, +1);
-			 
-	GameVector VectorDirections::directions[6] = { LEFT, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT };*/
 	
 }

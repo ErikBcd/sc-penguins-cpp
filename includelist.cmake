@@ -1,4 +1,9 @@
 include/
+include/client
 include/game
 include/game/util
 include/communication
+include/logic
+include/helpers
+externals/pugixml
+/

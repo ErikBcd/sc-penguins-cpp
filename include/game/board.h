@@ -1,6 +1,6 @@
 #pragma once
 
-#include "coordinates.h"
+#include "util/coordinates.h"
 #include "move.h"
 
 #include <vector>
@@ -12,12 +12,13 @@
 #define ONE_FISH 1 
 #define TWO_FISHES 2 
 #define THREE_FISHES 3 
-#define PLAYER_BLUE 4
-#define PLAYER_RED 5
+#define PLAYER_ONE 4
+#define PLAYER_TWO 5
 
 namespace Game {
 	class Board {
 	public:
+		Board();
 		char board[BOARD_SIZE_X][BOARD_SIZE_Y];
 		char getField(Coordinates::Coordinate c);
 

@@ -1,10 +1,11 @@
 #pragma once
 
-#include "coordinates.h"
+#include "util/coordinates.h"
 
 namespace Game {
 	class Move {
-		Coordinates::Coordinate start;
-		Coordinates::Coordinate destination;
+		public:
+			Coordinates::Coordinate start;
+			Coordinates::Coordinate destination;
 	};
 }

@@ -11,16 +11,25 @@ namespace Game {
 		Board board;
 		int turn;
 		Move lastMove;
-		int fishesRed;
-		int fishesBlue;
+		int fishesOne;
+		int fishesTwo;
 	public:
-		GameState(GameState other);
+		GameState();
+		GameState(const GameState& other);
 
 		std::vector<Move> getPossibleMoves();
 
 		void performMove(Move move);
 
-		/** @brief 0 = Red, 1 = Blue */
+		void setTurn(int turn);
+
+		void setBoard(Board board);
+
+		void setFishesOne(int count);
+
+		void setFishesTwo(int count);
+
+		/** @brief 0 = ONE, 1 = TWO */
 		bool currentTeam;
 
 		bool immovable(bool team);
