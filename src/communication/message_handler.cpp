@@ -1,6 +1,6 @@
 #include "message_handler.h"
 
-namespace Game_Communication
+namespace MessageHandling
 {
     std::string MessageHandler::createJoinRequest() {
         return "<protocol>\n<join />";
@@ -83,4 +83,4 @@ namespace Game_Communication
         
         return gameState;
     }
-} // namespace Game_Communication
+} // namespace MessageHandling

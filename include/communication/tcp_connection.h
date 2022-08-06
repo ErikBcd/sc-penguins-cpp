@@ -1,7 +1,7 @@
 #include <iostream>
 #include <boost/asio.hpp>
 
-namespace MessageHandler {
+namespace MessageHandling {
     /**
      * @brief Functions for setting up and using a connection to a game-server.
      */

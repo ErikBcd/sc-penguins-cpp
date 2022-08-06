@@ -23,7 +23,9 @@ namespace Client
 
         std::string room_id;
 
-        MessageHandler::TCP_Connection tcp_client;
+        MessageHandling::TCP_Connection tcp_client;
+
+        MessageHandling::MessageHandler msg_handler;
     public:
         Game_Client(Logic::Logic logic);
         ~Game_Client();
@@ -31,6 +33,6 @@ namespace Client
         void Start(int argc, char *argv[]);
 
     private:
-        void GameLoop();
+        std::string GameLoop();
     };  
 } // namespace Client
