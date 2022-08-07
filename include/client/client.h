@@ -6,6 +6,7 @@
 #include "../logic/logic.h"
 
 #include "../game/gameState.h"
+#include "../game/result.h"
 namespace Client
 {
     class Game_Client
@@ -23,16 +24,20 @@ namespace Client
 
         std::string room_id;
 
+        Game::GameResult result;
+
         MessageHandling::TCP_Connection tcp_client;
 
         MessageHandling::MessageHandler msg_handler;
     public:
-        Game_Client(Logic::Logic logic);
+        Game_Client(Logic::Logic &logic);
         ~Game_Client();
 
         void Start(int argc, char *argv[]);
 
     private:
-        std::string GameLoop();
+        void GameLoop();
+
+        MessageHandling::SC_Message handleMessage(const MessageHandling::SC_Message& message);
     };  
 } // namespace Client

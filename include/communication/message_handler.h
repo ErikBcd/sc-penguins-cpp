@@ -5,6 +5,7 @@
 #include <vector>
 #include "../game/gameState.h"
 #include "../game/move.h"
+#include "../game/result.h"
 #include "pugixml.hpp"
 
 namespace MessageHandling {
@@ -50,6 +51,6 @@ namespace MessageHandling {
 
             std::string getEndingReason(const std::string &message);
 
-            std::string getResult(const SC_Message &msg);
+            Game::GameResult getResult(const SC_Message &msg);
     };
 }

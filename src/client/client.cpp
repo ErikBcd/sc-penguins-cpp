@@ -5,35 +5,54 @@ namespace Client {
         this->used_logic = logic;
     }
 
-    std::string Game_Client::GameLoop() {
-        // #1 Wait for move request OR end of game
+    MessageHandling::SC_Message Game_Client::handleMessage(const MessageHandling::SC_Message &message) {
+        MessageHandling::SC_Message answer;
+
+        switch (message.getType())
+        {
+        case MessageHandling::Message_Type::MEMENTO:
+            gameState = msg_handler.getGameStateFromMessage(message.getContent());
+            return;
+        case MessageHandling::Message_Type::MOVE_REQUEST:
+            Game::Move move = used_logic.getMove(gameState);
+            answer = MessageHandling::SC_Message(msg_handler.createMoveMessage(move, room_id), MessageHandling::Message_Type::MOVE_REQUEST);
+            return answer;
+        case MessageHandling::Message_Type::RESULT:
+            result = msg_handler.getResult(message);
+        case MessageHandling::Message_Type::WELCOME_MESSAGE:
+            room_id = msg_handler.getRoomID(message.getContent());
+            team = msg_handler.getPlayer(message.getContent());
+        default:
+            return MessageHandling::SC_Message("", MessageHandling::Message_Type::UNKNOWN);
+            break;
+        }
+    }
+
+    void Game_Client::GameLoop() {
         while (true) {
-            // 1.1 Receive game data
-            //     If game has ended, return
+            // Receive messages
             std::string msg = tcp_client.receive();
 
-            // 1.1.1 Split memento and moveRequest
+            // Handle messages
             std::vector<MessageHandling::SC_Message> messages = msg_handler.splitMessage(msg);
-
-            // First message is status or result, second is move request
-            // If first message is result, quit
-            if (messages[0].getType() == MessageHandling::Message_Type::RESULT) {
-                return msg_handler.getResult(messages[0]);
-            } else {
-                gameState = msg_handler.getGameStateFromMessage(messages[0].getContent());
-            }
-            
-            // 1.3 Get new move from logic
-            if (messages.size() == 1) {
-                return "ERROR: No move request received!\n";
-            } else if (messages[1].getType() == MessageHandling::Message_Type::MOVE_REQUEST) {
-                Game::Move move = used_logic.getMove(gameState);
-                tcp_client.send(msg_handler.createMoveMessage(move, room_id));
-            } else {
-                return "ERROR: No move request received!\n";
+            std::vector<MessageHandling::SC_Message> answers;
+            bool gotMoveRequest = false;
+            for (MessageHandling::SC_Message message : messages) {
+                if (message.getType() == MessageHandling::Message_Type::MOVE_REQUEST) {
+                    gotMoveRequest = true;
+                }
+                answers.push_back(handleMessage(message));
             }
 
-            // TODO: Write actual Message handling
+            // Answer the server (or quit)
+            if (!gotMoveRequest) {
+                return;
+            }
+            for (MessageHandling::SC_Message answer : answers) {
+                if (answer.getType() != MessageHandling::Message_Type::UNKNOWN) {
+                    tcp_client.send(answer.getContent());
+                }
+            }
         }
     }
 
@@ -45,7 +64,7 @@ namespace Client {
         std::string info = tcp_client.receive();
         
         // #3 Go into gameloop
-        std::string result = GameLoop();
+        GameLoop();
 
         // #4 Print ending information
     }
