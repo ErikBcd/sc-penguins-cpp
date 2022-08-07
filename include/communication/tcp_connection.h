@@ -29,7 +29,7 @@ namespace MessageHandling {
              * 
              * @param message The xml-message as a string.
              */
-            void send(std::string message);
+            void send(const std::string &message);
 
             /**
              * @brief Receives a message from the connected server.
