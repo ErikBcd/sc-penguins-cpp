@@ -2,10 +2,12 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <vector>
 #include "../game/gameState.h"
 #include "../game/move.h"
 #include "../game/result.h"
+#include "xml_string_writer.h"
 #include "pugixml.hpp"
 
 namespace MessageHandling {
@@ -33,23 +35,17 @@ namespace MessageHandling {
     
     class MessageHandler {
         public:
-            std::vector<SC_Message> splitMessage(std::string message);
+            Message_Type getMessageTypeFromTag(const std::string &tagname);
+
+            std::vector<SC_Message> splitMessage(const std::string &message);
 
             std::string createJoinRequest();
 
             std::string createMoveMessage(const Game::Move &move, const std::string &roomID);
 
-            std::string getRoomID(const std::string &message);
-
-            Message_Type getMessageType(const std::string &message);
+            void getWelcomeData(const std::string &message, std::string &room_ID, bool &team);
 
             Game::GameState getGameStateFromMessage(const std::string &message);
-
-            bool getPlayer(const std::string &message);
-
-            bool getWinner(const std::string &message);
-
-            std::string getEndingReason(const std::string &message);
 
             Game::GameResult getResult(const SC_Message &msg);
     };

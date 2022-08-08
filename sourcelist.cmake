@@ -4,4 +4,5 @@ set(sources ${sources}
     src/client/client.cpp
     src/communication/message_handler.cpp
     src/communication/tcp_connection.cpp
+    src/communication/xml_string_writer.cpp
 )

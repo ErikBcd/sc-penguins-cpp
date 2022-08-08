@@ -8,15 +8,18 @@ namespace Game {
 	public:
 		GameResult();
 
-	private:
 		bool winner;
 
-		bool ended_normally;
+		std::string playerOneReason;
+		std::string playerOneCause;
+		int playerOneWinningPoints;
+		int playerOneAveragePoints;
 
-		std::string reason;
-		std::string cause;
+		std::string playerTwoReason;
+		std::string playerTwoCause;
+		int playerTwoWinningPoints;
+		int playerTwoAveragePoints;
 
-		int teamOnePoints;
-		int teamTwoPoints;
+		std::string toString();
 	};
 }

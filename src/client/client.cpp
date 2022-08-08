@@ -20,8 +20,7 @@ namespace Client {
         case MessageHandling::Message_Type::RESULT:
             result = msg_handler.getResult(message);
         case MessageHandling::Message_Type::WELCOME_MESSAGE:
-            room_id = msg_handler.getRoomID(message.getContent());
-            team = msg_handler.getPlayer(message.getContent());
+            msg_handler.getWelcomeData(message.getContent(), room_id, team);
         default:
             return MessageHandling::SC_Message("", MessageHandling::Message_Type::UNKNOWN);
             break;
