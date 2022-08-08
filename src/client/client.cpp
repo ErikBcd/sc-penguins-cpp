@@ -1,7 +1,7 @@
 #include "client.h"
 
 namespace Client {
-    Game_Client::Game_Client(Logic::Logic logic) {
+    Game_Client::Game_Client(Logic::Logic &logic) {
         this->used_logic = logic;
     }
 
