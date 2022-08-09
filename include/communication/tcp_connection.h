@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <boost/asio.hpp>
 
@@ -15,7 +17,7 @@ namespace MessageHandling {
             /**
              * @brief TCP IP socket.
              */
-            boost::asio::ip::tcp::socket socket {io_service};
+            boost::asio::ip::tcp::socket socket_ {io_service};
 
             /**
              * @brief Buffer for received messages, set when something was received.
@@ -44,7 +46,7 @@ namespace MessageHandling {
              * @param ip_address IP adress of the server.
              * @param port Port of the server.
              */
-            void connect(std::string ip_address = "127.0.0.1", std::string port = "13051");
+            void connect(std::string ip_address = "127.0.0.1", unsigned short port = 13051);
 
             /**
              * @brief Disconnects the client-server connection.
