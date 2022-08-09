@@ -60,14 +60,18 @@ namespace MessageHandling
         pugi::xml_node board = state.child("board");
         Board b;
         int x = 0;
+        int setPenguinsOne = 0;
+        int setPenguinsTwo = 0;
         for (pugi::xml_node nx : board.children()) {
             int y = 0;
             for (pugi::xml_node ny : nx.children()) {
                 if (ny.text().as_string() == "ONE") {
                     b.board[x][y] = 4;
+                    setPenguinsOne++;
                 } else if (ny.text().as_string() == "TWO")
                 {
                     b.board[x][y] = 5;
+                    setPenguinsTwo++;
                 } else {
                     b.board[x][y] = ny.text().as_uint();
                 }
@@ -77,6 +81,8 @@ namespace MessageHandling
         }
 
         gameState.setBoard(b);
+        gameState.setUnsetPenguinsOne(setPenguinsOne);
+        gameState.setUnsetPenguinsTwo(setPenguinsTwo);
 
         x = 0;
         for (pugi::xml_node n : state.child("fishes").children()) {
