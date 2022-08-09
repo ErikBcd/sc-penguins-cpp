@@ -36,15 +36,24 @@ namespace MessageHandling
     }
 
     std::string MessageHandler::createMoveMessage(const Game::Move &move, const std::string &roomID) {
-        std::string message(  "<room roomId=\"" + roomID + "\">\n"
-                              +"  <data class=\"move\">\n"
-                              +"    <from x=\"" + std::to_string(move.start.x) 
-                                + "\" y=\"" + std::to_string(move.start.y) + "\"/>"
-                              +"    <to x=\"" + std::to_string(move.destination.x) 
-                                + "\" y=\"" + std::to_string(move.destination.y) + "\"/>"
-                              +"  </data>"
-                              +"</room>");
-
+        std::string message;
+        if (move.is_set_move) {
+            message = "<room roomId=\"" + roomID + "\">\n"
+                        +"  <data class=\"move\">\n"
+                        +"    <to x=\"" + std::to_string(move.destination.x) 
+                        + "\" y=\"" + std::to_string(move.destination.y) + "\"/>"
+                        +"  </data>"
+                        +"</room>";
+        } else {
+            message = "<room roomId=\"" + roomID + "\">\n"
+                        +"  <data class=\"move\">\n"
+                        +"    <from x=\"" + std::to_string(move.start.x) 
+                        + "\" y=\"" + std::to_string(move.start.y) + "\"/>"
+                        +"    <to x=\"" + std::to_string(move.destination.x) 
+                        + "\" y=\"" + std::to_string(move.destination.y) + "\"/>"
+                        +"  </data>"
+                        +"</room>";
+        }
         return message;
     }
 
