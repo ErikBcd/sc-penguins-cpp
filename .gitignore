@@ -34,5 +34,6 @@
 out/
 /.vs
 /.vscode
+/bin
 build
 CMakeListsOLD.txt
