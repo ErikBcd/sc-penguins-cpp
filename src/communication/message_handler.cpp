@@ -63,7 +63,14 @@ namespace MessageHandling
         for (pugi::xml_node nx : board.children()) {
             int y = 0;
             for (pugi::xml_node ny : nx.children()) {
-                b.board[x][y] = ny.text().as_uint();
+                if (ny.text().as_string() == "ONE") {
+                    b.board[x][y] = 4;
+                } else if (ny.text().as_string() == "TWO")
+                {
+                    b.board[x][y] = 5;
+                } else {
+                    b.board[x][y] = ny.text().as_uint();
+                }
                 y++;
             }
             x++;
