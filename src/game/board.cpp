@@ -3,6 +3,15 @@
 
 namespace Game {
 	Board::Board() {}
+
+	Board::Board(const Board& other) {
+		for (int x = 0; x < BOARD_SIZE_X; x++) {
+			for (int y = 0; y < BOARD_SIZE_Y; y++) {
+				this->board[x][y] = other.board[x][y];
+			}
+		}
+	}
+
 	char Board::getField(Coordinates::Coordinate c) {
 		if (c.isDoubleHex) {
 			Coordinates::Coordinate cd = c.toArrayCoordinate();
@@ -38,6 +47,29 @@ namespace Game {
 		DoubleHexDirections helper;
 		for (Coordinate dir : helper.directions) {
 			getMovesInDirection(c, dir, moves);
+		}
+	}
+
+	void Board::getFieldsWithSingleFish(std::vector<Move>& moves) {
+		// Go through all fields of the board and adds set-moves on fields with 1 fish
+		for (int x = 0; x < BOARD_SIZE_X; x++) {
+			for (int y = 0; y < BOARD_SIZE_Y; y++) {
+				if (board[x][y] == ONE_FISH) {
+					Coordinate end(x, y, false);
+					moves.push_back(Move(Coordinate(), end.toDoubleHex(), true));
+				}
+			}
+		}
+	}
+
+	std::vector<Coordinate> Board::getPenguinPositions(bool team) {
+		std::vector<Coordinate> positions;
+		for (int x = 0; x < BOARD_SIZE_X; x++) {
+			for (int y = 0; y < BOARD_SIZE_Y; y++) {
+				if (board[x][y] == PLAYER_ONE + team) {
+					positions.push_back(Coordinate(x, y, false));
+				}
+			}
 		}
 	}
 }

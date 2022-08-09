@@ -40,6 +40,8 @@ namespace Game {
 	public:
 		Board();
 
+		Board(const Board& other);
+
 		/**
 		 * @brief The game board as a X * Y char array.
 		 * 
@@ -55,11 +57,34 @@ namespace Game {
 		char getField(Coordinates::Coordinate c);
 
 		/**
+		 * @brief Sets a field on the board to a new value.
+		 * 
+		 * @param c The coordinate of the field.
+		 * @param field The new value.
+		 */
+		void setField(Coordinates::Coordinate c, char field);
+
+		/**
 		 * @brief Get the Possible Moves From a specific field.
 		 * 
 		 * @param c The starting position.
 		 * @param moves A vector of moves that will be used as storage.
 		 */
 		void getPossibleMovesFrom(Coordinate c, std::vector<Move>& moves);
+
+		/**
+		 * @brief Get the fields fith a single fish on them.
+		 * 
+		 * @param moves Set-Moves that land on fields with single fish on them.
+		 */
+		void getFieldsWithSingleFish(std::vector<Move>& moves);
+
+		/**
+		 * @brief Get the positions of the penguins of the given team
+		 * 
+		 * @param team Team that the penguins belong to.
+		 * @return std::vector<Coordinate> Coordinates of the penguins. 
+		 */
+		std::vector<Coordinate> getPenguinPositions(bool team);
 	};
 }
