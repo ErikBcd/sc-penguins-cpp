@@ -29,7 +29,7 @@ namespace MessageHandling {
         }
     }
 
-    void TCP_Connection::connect(std::string ip_address = "127.0.0.1", unsigned short port = 13051) {
+    void TCP_Connection::connect(std::string ip_address /*= "127.0.0.1"*/, unsigned short port /*= 13051*/) {
         socket_.connect(ip::tcp::endpoint(ip::address::from_string(ip_address), port));
     }
 

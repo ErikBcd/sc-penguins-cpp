@@ -12,19 +12,23 @@ namespace Client {
         {
         case MessageHandling::Message_Type::MEMENTO:
             gameState = msg_handler.getGameStateFromMessage(message.getContent());
-            return;
-        case MessageHandling::Message_Type::MOVE_REQUEST:
+            return MessageHandling::SC_Message("", MessageHandling::Message_Type::UNKNOWN);
+        case MessageHandling::Message_Type::MOVE_REQUEST: {
             Game::Move move = used_logic.getMove(gameState);
             answer = MessageHandling::SC_Message(msg_handler.createMoveMessage(move, room_id), MessageHandling::Message_Type::MOVE_REQUEST);
             return answer;
+            }
         case MessageHandling::Message_Type::RESULT:
             result = msg_handler.getResult(message);
+            break;
         case MessageHandling::Message_Type::WELCOME_MESSAGE:
             msg_handler.getWelcomeData(message.getContent(), room_id, team);
+            break;
         default:
-            return MessageHandling::SC_Message("", MessageHandling::Message_Type::UNKNOWN);
             break;
         }
+
+        return MessageHandling::SC_Message("", MessageHandling::Message_Type::UNKNOWN);
     }
 
     void Game_Client::GameLoop() {
@@ -66,5 +70,6 @@ namespace Client {
         GameLoop();
 
         // #4 Print ending information
+        std::cout << result.toString() << std::endl;
     }
 }

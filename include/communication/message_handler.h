@@ -8,7 +8,7 @@
 #include "../game/move.h"
 #include "../game/result.h"
 #include "xml_string_writer.h"
-#include "pugixml.hpp"
+#include "../../externals/pugixml/pugixml.hpp"
 
 namespace MessageHandling {
     enum class Message_Type {

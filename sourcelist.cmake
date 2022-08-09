@@ -5,4 +5,7 @@ set(sources ${sources}
     src/communication/message_handler.cpp
     src/communication/tcp_connection.cpp
     src/communication/xml_string_writer.cpp
+    starter.cpp
+    extensions/logic/logic.cpp
+    externals/pugixml/pugixml.cpp
 )

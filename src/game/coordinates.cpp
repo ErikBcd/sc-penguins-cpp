@@ -54,7 +54,7 @@ namespace Coordinates {
 									GameVector(0, -1) };
 	};
 
-	struct GameVector::VectorDirections {
+	/* struct GameVector::VectorDirections {
 		GameVector LEFT = GameVector(+2, 0);
 		GameVector RIGHT = GameVector(-2, 0);
 		GameVector UP_LEFT = GameVector(-1, -1);
@@ -63,6 +63,6 @@ namespace Coordinates {
 		GameVector DOWN_RIGHT = GameVector(+1, +1);
 
 		GameVector directions[6] = { LEFT, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT };
-	};
+	}; */
 	
 }

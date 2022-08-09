@@ -7,6 +7,7 @@
 
 #include "../game/gameState.h"
 #include "../game/result.h"
+
 namespace Client
 {
     class Game_Client
@@ -31,7 +32,7 @@ namespace Client
         MessageHandling::MessageHandler msg_handler;
     public:
         Game_Client(Logic::Logic &logic);
-        ~Game_Client();
+        //~Game_Client();
 
         void Start(int argc, char *argv[]);
 

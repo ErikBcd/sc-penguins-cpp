@@ -49,14 +49,13 @@ namespace Coordinates {
 			GameVector DOWN_RIGHT;
 			
 			GameVector directions[6];*/
-			/*static GameVector LEFT = GameVector(+2, 0);
-			static GameVector RIGHT = GameVector(-2, 0);
-			static GameVector UP_LEFT = GameVector(-1, -1);
-			static GameVector UP_RIGHT = GameVector(+1, -1);
-			static GameVector DOWN_LEFT = GameVector(-1, +1);
-			static GameVector DOWN_RIGHT = GameVector(+1, +1);
-		
-			static GameVector directions[6] = { LEFT, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT };*/
+			/* GameVector LEFT(+2, 0);
+			GameVector RIGHT = GameVector(-2, 0);
+			GameVector UP_LEFT = GameVector(-1, -1);
+			GameVector UP_RIGHT = GameVector(+1, -1);
+			GameVector DOWN_LEFT = GameVector(-1, +1);
+			GameVector DOWN_RIGHT = GameVector(+1, +1);
+			GameVector directions[6] = { LEFT, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT }; */
 		};
 	private:
 	};
