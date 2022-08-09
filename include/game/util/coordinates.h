@@ -6,12 +6,27 @@ namespace Coordinates {
 		int x;
 		int y;
 
-		Coordinate(int xIn, int yIn);
+		Coordinate();
+
+		Coordinate(int xIn, int yIn, bool doubleHex = true);
 
 		bool isDoubleHex;
 
 		Coordinate toDoubleHex();
 		Coordinate toArrayCoordinate();
+
+		Coordinate operator+(const Coordinate& other);
+	};
+
+	struct DoubleHexDirections
+	{
+		Coordinate LEFT = Coordinate(+2, 0);
+		Coordinate RIGHT = Coordinate(-2, 0);
+		Coordinate UP_LEFT = Coordinate(-1, -1);
+		Coordinate UP_RIGHT = Coordinate(+1, -1);
+		Coordinate DOWN_LEFT = Coordinate(-1, +1);
+		Coordinate DOWN_RIGHT = Coordinate(+1, +1);
+		Coordinate directions[6] = { LEFT, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT };
 	};
 
 	/**
@@ -39,24 +54,6 @@ namespace Coordinates {
 
 		struct DoubledHex;
 
-		struct VectorDirections
-		{
-			/*GameVector LEFT = GameVector(+2, 0);
-			GameVector RIGHT;
-			GameVector UP_LEFT;
-			GameVector UP_RIGHT;
-			GameVector DOWN_LEFT;
-			GameVector DOWN_RIGHT;
-			
-			GameVector directions[6];*/
-			/* GameVector LEFT(+2, 0);
-			GameVector RIGHT = GameVector(-2, 0);
-			GameVector UP_LEFT = GameVector(-1, -1);
-			GameVector UP_RIGHT = GameVector(+1, -1);
-			GameVector DOWN_LEFT = GameVector(-1, +1);
-			GameVector DOWN_RIGHT = GameVector(+1, +1);
-			GameVector directions[6] = { LEFT, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT }; */
-		};
 	private:
 	};
 

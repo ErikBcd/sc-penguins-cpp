@@ -2,9 +2,10 @@
 #include <cmath>
 
 namespace Coordinates {
-	Coordinate::Coordinate(int xIn, int yIn) {
+	Coordinate::Coordinate(int xIn, int yIn, bool doubleHex) {
 		this->x = xIn;
 		this->y = yIn;
+		isDoubleHex = doubleHex;
 	}
 
 	Coordinate Coordinate::toDoubleHex() {
@@ -16,7 +17,14 @@ namespace Coordinates {
 		return Coordinates::Coordinate((int)this->x / 2, this->y);
 	}
 
-	GameVector::GameVector(int dx, int dy) {
+	Coordinate Coordinate::operator+(const Coordinate& other) {
+		if (this->isDoubleHex && !other.isDoubleHex) {
+			throw "Error: Coordinates are of different types!";
+		}
+		return Coordinate(this->x + other.x, this->y + other.y);
+	}
+
+	/* GameVector::GameVector(int dx, int dy) {
 		this->x = dx;
 		this->y = dy;
 	}
@@ -52,7 +60,7 @@ namespace Coordinates {
 									GameVector(1, 0),
 									GameVector(0, 1),
 									GameVector(0, -1) };
-	};
+	}; */
 
 	/* struct GameVector::VectorDirections {
 		GameVector LEFT = GameVector(+2, 0);
