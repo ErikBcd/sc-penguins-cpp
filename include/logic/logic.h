@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../game/move.h"
-#include "../game/gameState.h"
+#include "move.h"
+#include "gameState.h"
 
 namespace Logic {
     class Logic

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "../../externals/pugixml/pugixml.hpp"
+#include "pugixml.hpp"
 
 namespace MessageHandling {
     struct xml_string_writer : pugi::xml_writer

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "util/coordinates.h"
+#include "coordinates.h"
 
 namespace Game {
 	class Move {

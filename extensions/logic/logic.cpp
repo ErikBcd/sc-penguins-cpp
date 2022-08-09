@@ -1,4 +1,4 @@
-#include "../../include/logic/logic.h"
+#include "logic.h"
 
 class RandomLogic : public Logic::Logic
 {

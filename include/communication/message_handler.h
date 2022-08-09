@@ -4,11 +4,11 @@
 #include <string>
 #include <sstream>
 #include <vector>
-#include "../game/gameState.h"
-#include "../game/move.h"
-#include "../game/result.h"
+#include "gameState.h"
+#include "move.h"
+#include "result.h"
 #include "xml_string_writer.h"
-#include "../../externals/pugixml/pugixml.hpp"
+#include "pugixml.hpp"
 
 namespace MessageHandling {
     enum class Message_Type {

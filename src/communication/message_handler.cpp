@@ -29,6 +29,8 @@ namespace MessageHandling
             Message_Type type = getMessageTypeFromTag(subsub.first_attribute().as_string());
             messages.push_back(SC_Message(writer.result, type));
         }
+
+        return messages;
     }
 
     std::string MessageHandler::createJoinRequest() {
