@@ -28,34 +28,4 @@ namespace Coordinates {
 		Coordinate DOWN_RIGHT = Coordinate(+1, +1);
 		Coordinate directions[6] = { LEFT, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT };
 	};
-
-	/**
-	 *	@brief The distance between two Coordinates.
-	 */
-	class GameVector {
-	public:
-		int x;
-		int y;
-
-		GameVector(int dx, int dy);
-
-		/** 
-		 * @brief Area of a rectangle, spanned by the diagonal of the vector.
-		 */
-		int getArea();
-
-		int getComparableLength();
-
-		double getLength();
-
-		void times(int scalar);
-
-		int compareTo(GameVector other);
-
-		struct DoubledHex;
-
-	private:
-	};
-
-	
 }
