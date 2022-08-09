@@ -5,6 +5,24 @@ namespace Client {
         this->used_logic = logic;
     }
 
+    std::string Game_Client::trimMessage(std::string &msg) {
+        std::string trimmed;
+        if (msg.find_first_of("<protocol>", 0) == 0) {
+            trimmed = msg.substr(10, msg.length()-1);
+        }
+        if (trimmed.find_first_of("<joined roomId", 0) == 0) {
+            size_t end = trimmed.find_first_of(">", 0);
+            trimmed = trimmed.substr(end, trimmed.length()-1-end);
+        }
+
+        size_t end = msg.find("</protocol>");
+        if (end != std::string::npos) {
+            trimmed = trimmed.substr(0, trimmed.length() - 12);
+        }
+
+        return trimmed;
+    }
+
     MessageHandling::SC_Message Game_Client::handleMessage(const MessageHandling::SC_Message &message) {
         MessageHandling::SC_Message answer;
 
@@ -61,10 +79,18 @@ namespace Client {
 
     void Game_Client::Start(int argc, char *argv[]) {
         // #1 Connect to server
-        tcp_client.connect(); //TODO: Add option to change IP and port via console args
-
+        if (argc == 2) {
+            std::string ip(argv[1]);
+            unsigned short port = (unsigned short ) atoi(argv[2]);
+            tcp_client.connect(ip, port);
+        } else {
+            tcp_client.connect();
+        }
         // #2 Gather game info
         std::string info = tcp_client.receive();
+
+        handleMessage(MessageHandling::SC_Message(trimMessage(info), 
+                        MessageHandling::Message_Type::WELCOME_MESSAGE));
         
         // #3 Go into gameloop
         GameLoop();
