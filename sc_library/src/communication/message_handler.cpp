@@ -3,6 +3,9 @@
 namespace MessageHandling
 {
     using namespace Game;
+
+    MessageHandler::MessageHandler() {}
+
     Message_Type MessageHandler::getMessageTypeFromTag(const std::string &tagname) {
         if (tagname == "welcomeMessage") { return Message_Type::WELCOME_MESSAGE; }
         if (tagname == "moveRequest") { return Message_Type::MOVE_REQUEST; }

@@ -11,20 +11,51 @@ namespace Game {
 			}
 		}
 	}
+	
+	bool Board::coordinateIsInBounds(Coordinates::Coordinate c) {
+		return (c.x >= 0 && c.y >= 0) && (c.x < BOARD_SIZE_X && c.y < BOARD_SIZE_Y);
+	}
 
 	char Board::getField(Coordinates::Coordinate c) {
 		if (c.isDoubleHex) {
 			Coordinates::Coordinate cd = c.toArrayCoordinate();
-			return board[cd.x][cd.y];
+			if (coordinateIsInBounds(cd)) {
+				return board[cd.x][cd.y];
+			} else {
+				throw "Coordinate is out of bounds!";
+			}
+		}
+		
+		if (coordinateIsInBounds(c)) {
+			return board[c.x][c.y];
+		} else {
+			throw "Coordinate is out of bounds!";
+		}
+	}
+
+	void Board::setField(Coordinates::Coordinate c, char field) {
+		if (c.isDoubleHex) {
+			Coordinates::Coordinate cd = c.toArrayCoordinate();
+			if (coordinateIsInBounds(cd)) {
+				board[cd.x][cd.y] = field;
+				return;
+			} else {
+				throw "Coordinate is out of bounds!";
+			}
 		}
 
-		return board[c.x][c.y];
+		if (coordinateIsInBounds(c)) {
+			board[c.x][c.y] = field;
+			return;
+		} else {
+			throw "Coordinate is out of bounds!";
+		}
 	}
 
 	bool Board::isValidField(Coordinate c) {
-		Coordinate arrCoord = c.toArrayCoordinate();
+		Coordinate arrCoord = (c.isDoubleHex) ? c.toArrayCoordinate() : c;
 
-		if (arrCoord.x < 0 || arrCoord.x >= BOARD_SIZE_X || arrCoord.y < 0 || arrCoord.y >= BOARD_SIZE_Y) {
+		if (!coordinateIsInBounds(arrCoord)) {
 			return false;
 		}
 

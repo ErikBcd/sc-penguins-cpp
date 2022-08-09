@@ -3,7 +3,6 @@
 class RandomLogic : public Logic::Logic
 {
 private:
-    /* data */
 public:
     RandomLogic() : Logic::Logic() { }
     

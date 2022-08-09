@@ -2,6 +2,7 @@
 
 namespace Game
 {
+    GameResult::GameResult() {}
     std::string GameResult::toString() {
         std::stringstream ss;
         ss << "Winner: " << ((winner) ? "TWO\n" : "ONE\n") 

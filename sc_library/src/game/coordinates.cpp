@@ -2,6 +2,7 @@
 #include <cmath>
 
 namespace Coordinates {
+	Coordinate::Coordinate() {}
 	Coordinate::Coordinate(int xIn, int yIn, bool doubleHex) {
 		this->x = xIn;
 		this->y = yIn;

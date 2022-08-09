@@ -35,6 +35,8 @@ namespace MessageHandling {
     
     class MessageHandler {
         public:
+            MessageHandler();
+            
             Message_Type getMessageTypeFromTag(const std::string &tagname);
 
             std::vector<SC_Message> splitMessage(const std::string &message);

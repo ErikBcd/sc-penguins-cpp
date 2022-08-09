@@ -6,9 +6,9 @@ set(sources ${sources}
     src/game/move.cpp
     src/client/client.cpp
     src/communication/message_handler.cpp
+    src/communication/SC_Message.cpp
     src/communication/tcp_connection.cpp
     src/communication/xml_string_writer.cpp
-    starter.cpp
-    extensions/logic/logic.cpp
     externals/pugixml/pugixml.cpp
+    src/logic/logic.cpp
 )

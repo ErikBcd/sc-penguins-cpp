@@ -1,5 +1,6 @@
-#include "./include/client/client.h"
-#include "./extensions/logic/logic.cpp"
+#include "client.h"
+#include "logic.h"
+#include "custom_logic.cpp"
 
 int main(int argc, char *argv[]) {
     Logic::Logic logic = RandomLogic();

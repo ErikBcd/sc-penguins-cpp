@@ -49,6 +49,16 @@ namespace Game {
 		char board[BOARD_SIZE_X][BOARD_SIZE_Y];
 
 		/**
+		 * @brief Checks if the given coordinate is in Bounds
+		 * 
+		 * @param c 
+		 * @return true If the coordinate is in the bounds defined in
+		 * 		   BOARD_SIZE_X and BOARD_SIZE_Y
+		 * @return false otherwise
+		 */
+		bool coordinateIsInBounds(Coordinates::Coordinate c);
+
+		/**
 		 * @brief Gets the field from the board at the position of c.
 		 * 
 		 * @param c Coordinates of the field.
