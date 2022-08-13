@@ -19,6 +19,7 @@ namespace MessageHandling {
         // Using the receiving function of the former c++ client by sunfl0w, 
         // since I ran into trouble with this. Thanks! 
         std::size_t bytes_transferred = boost::asio::read_until(socket_, received, "</room>", err);
+        
         if( err && err != boost::asio::error::eof ) {
             std::cerr << "Receiving message failed: " << err.message() << std::endl;
             return "";
@@ -30,6 +31,7 @@ namespace MessageHandling {
     }
 
     void TCP_Connection::connect(std::string ip_address /*= "127.0.0.1"*/, unsigned short port /*= 13051*/) {
+        std::cout << "Connecting on: " << ip_address << ":" << port << std::endl;
         socket_.connect(ip::tcp::endpoint(ip::address::from_string(ip_address), port));
     }
 

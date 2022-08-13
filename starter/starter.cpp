@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[]) {
     // Choose your custom logic here
-    Logic::Logic logic = RandomLogic();
+    RandomLogic logic;
     Client::Game_Client client(logic);
     client.Start(argc, argv);
 }

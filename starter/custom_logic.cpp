@@ -1,4 +1,5 @@
 #include "logic.h"
+#include <chrono>
 
 /**
  * @brief A subclass of a game logic.
@@ -9,7 +10,7 @@ class RandomLogic : public Logic::Logic
 {
 private:
 public:
-    RandomLogic() : Logic::Logic() { }
+    //RandomLogic() : Logic::Logic() { }
     
     /**
      * @brief This method will be called once the server requests a move.
@@ -20,6 +21,11 @@ public:
     Game::Move getMove(Game::GameState gameState) {
         // Get all moves that are currently possible.
         std::vector<Game::Move> possibleMoves = gameState.getPossibleMoves();
+
+        if (possibleMoves.size() == 0) {
+            std::cout << "ERROR: NO MOVES FOUND!" << std::endl;
+            throw;
+        }
 
         // Return the chosen move, in this case the first move in the vector.
         return possibleMoves[0];

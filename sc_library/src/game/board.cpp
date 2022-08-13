@@ -1,5 +1,4 @@
 #include "board.h"
-#include <vector>
 
 namespace Game {
 	Board::Board() {}
@@ -55,6 +54,12 @@ namespace Game {
 	bool Board::isValidField(Coordinate c) {
 		Coordinate arrCoord = (c.isDoubleHex) ? c.toArrayCoordinate() : c;
 
+		if (c.isDoubleHex) {
+			if (c.x < 0 || c.y < 0 || c.x >= (BOARD_SIZE_X)*2 || c.y >= BOARD_SIZE_Y) {
+				return false;
+			}
+		}
+
 		if (!coordinateIsInBounds(arrCoord)) {
 			return false;
 		}
@@ -65,10 +70,10 @@ namespace Game {
 	}
 
 	void Board::
-		getMovesInDirection(Coordinates::Coordinate& start, Coordinates::Coordinate dir, std::vector<Move>& moves) {
-		Coordinates::Coordinate c = (start.isDoubleHex) ? start : start.toDoubleHex();
+		getMovesInDirection(Coordinates::Coordinate start, Coordinates::Coordinate dir, std::vector<Move>& moves) {
+		Coordinates::Coordinate c = start;
+		c = dir + c;
 		while (isValidField(c)) {
-			// TODO: Check if the server wants double hex coordinates or standard coords..
 			moves.push_back(Move(start, c));
 			c = dir + c;
 		}
@@ -76,13 +81,15 @@ namespace Game {
 
 	void Board::getPossibleMovesFrom(Coordinates::Coordinate c, std::vector<Move>& moves) {
 		DoubleHexDirections helper;
+		Coordinates::Coordinate doubleHex = (c.isDoubleHex) ? c : c.toDoubleHex();
 		for (Coordinate dir : helper.directions) {
-			getMovesInDirection(c, dir, moves);
+			getMovesInDirection(doubleHex, dir, moves);
 		}
 	}
 
 	void Board::getFieldsWithSingleFish(std::vector<Move>& moves) {
 		// Go through all fields of the board and adds set-moves on fields with 1 fish
+
 		for (int x = 0; x < BOARD_SIZE_X; x++) {
 			for (int y = 0; y < BOARD_SIZE_Y; y++) {
 				if (board[x][y] == ONE_FISH) {

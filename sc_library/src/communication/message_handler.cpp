@@ -17,6 +17,14 @@ namespace MessageHandling
         return Message_Type::UNKNOWN;
     }
 
+    SC_Message MessageHandler::createMessage(const std::string &message) {
+        pugi::xml_document doc;
+        doc.load_string(message.data());
+        Message_Type type = getMessageTypeFromTag(doc.child("room").child("data").first_attribute().as_string());
+
+        return SC_Message(message, type);
+    }
+
     std::vector<SC_Message> MessageHandler::splitMessage(const std::string &message) {
         std::string editedMsg = "<root>\n" + message + "</root>";
         pugi::xml_document messageDocument;
@@ -69,7 +77,6 @@ namespace MessageHandling
         pugi::xml_node state = messageDocument.child("room").child("data").child("state");
 
         gameState.setTurn(state.first_attribute().as_int());
-        gameState.currentTeam = state.child("startTeam").text().as_string() == "TWO";
         
         pugi::xml_node board = state.child("board");
         Board b;
@@ -79,15 +86,15 @@ namespace MessageHandling
         for (pugi::xml_node nx : board.children()) {
             int y = 0;
             for (pugi::xml_node ny : nx.children()) {
-                if (ny.text().as_string() == "ONE") {
-                    b.board[x][y] = 4;
+                if (std::string("ONE").compare(ny.text().as_string()) == 0) {
+                    b.board[y][x] = b.PLAYER_ONE;
                     setPenguinsOne++;
-                } else if (ny.text().as_string() == "TWO")
+                } else if (std::string("TWO").compare(ny.text().as_string()) == 0)
                 {
-                    b.board[x][y] = 5;
+                    b.board[y][x] = b.PLAYER_TWO;
                     setPenguinsTwo++;
                 } else {
-                    b.board[x][y] = ny.text().as_uint();
+                    b.board[y][x] = ny.text().as_uint();
                 }
                 y++;
             }
@@ -114,8 +121,11 @@ namespace MessageHandling
     void MessageHandler::getWelcomeData(const std::string &message, std::string &room_ID, bool &team) {
         pugi::xml_document doc;
         doc.load_string(message.data());
-        room_ID = doc.first_attribute().as_string();
-        team = doc.child("data").attribute("color").as_string() == "TWO";
+        room_ID = doc.child("room").first_attribute().as_string();
+        team = (std::string("TWO").compare(
+                    doc.child("room")
+                        .child("data").attribute("color").as_string()) == 0);
+        //team = doc.child("room").child("data").attribute("color").as_string() == "TWO";
     }
 
     GameResult MessageHandler::getResult(const SC_Message &msg) {

@@ -10,22 +10,22 @@ namespace Game
         this->turn = other.getTurn();
         this->fishCount[0] = other.getFishesOne();
         this->fishCount[1] = other.getFishesTwo();
-        this->unsetPenguins[0] = other.getUnsetPenguinsOne();
-        this->unsetPenguins[1] = other.getUnsetPenguinsTwo();
+        this->setPenguins[0] = other.getUnsetPenguinsOne();
+        this->setPenguins[1] = other.getUnsetPenguinsTwo();
     }
 
     std::vector<Move> GameState::getPossibleMoves(bool team) {
         std::vector<Move> moves;
-        if (unsetPenguins[team] > 0) {
+        if (setPenguins[team] != 4) {
             board.getFieldsWithSingleFish(moves);
             return moves;
         }
+
 
         std::vector<Coordinate> penguins = board.getPenguinPositions(team);
         for (Coordinate c : penguins) {
             board.getPossibleMovesFrom(c, moves);
         }
-
         return moves;
     }
 
@@ -37,7 +37,7 @@ namespace Game
         if (move.is_set_move) {
             fishCount[currentTeam] += 1;
             board.setField(move.destination, 4 + currentTeam);
-            unsetPenguins[currentTeam]--;
+            setPenguins[currentTeam]--;
         } else {
             fishCount[currentTeam] += board.getField(move.destination);
             board.setField(move.start, 0);
@@ -66,7 +66,7 @@ namespace Game
     }
 
     void GameState::setBoard(Board newBoard) {
-        this->board = board;
+        this->board = newBoard;
     }
 
     Board GameState::getBoard() {
@@ -90,19 +90,19 @@ namespace Game
     }
 
     void GameState::setUnsetPenguinsOne(int count) {
-        this->unsetPenguins[0] = count;
+        this->setPenguins[0] = count;
     }
 
     int GameState::getUnsetPenguinsOne() {
-        return this->unsetPenguins[0];
+        return this->setPenguins[0];
     }
 
     void GameState::setUnsetPenguinsTwo(int count) {
-        this->unsetPenguins[1] = count;
+        this->setPenguins[1] = count;
     }
 
     int GameState::getUnsetPenguinsTwo() {
-        return this->unsetPenguins[1];
+        return this->setPenguins[1];
     }
 
 } // namespace Game

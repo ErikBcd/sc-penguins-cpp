@@ -11,7 +11,7 @@ namespace Game {
 		Board board;
 		int turn;
 		int fishCount[2];
-		int unsetPenguins[2];
+		int setPenguins[2];
 	public:
 		GameState();
 		GameState(GameState& other);

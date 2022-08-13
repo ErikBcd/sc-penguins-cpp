@@ -15,7 +15,8 @@ namespace Coordinates {
 	}
 
 	Coordinate Coordinate::toArrayCoordinate() {
-		return Coordinates::Coordinate((int)this->x / 2, this->y);
+		int xo = (y % 2 == 0) ? this->x / 2 : 1 + (this->x / 2);
+		return Coordinates::Coordinate(this->x / 2, this->y, false);
 	}
 
 	Coordinate Coordinate::operator+(const Coordinate& other) {

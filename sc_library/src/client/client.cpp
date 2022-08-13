@@ -2,7 +2,7 @@
 
 namespace Client {
     Game_Client::Game_Client(Logic::Logic &logic) {
-        this->used_logic = logic;
+        this->used_logic = &logic;
     }
 
     std::string Game_Client::trimMessage(std::string &msg) {
@@ -23,76 +23,66 @@ namespace Client {
         return trimmed;
     }
 
-    MessageHandling::SC_Message Game_Client::handleMessage(const MessageHandling::SC_Message &message) {
+    void Game_Client::handleMessage(const MessageHandling::SC_Message &message) {
         MessageHandling::SC_Message answer;
 
         switch (message.getType())
         {
         case MessageHandling::Message_Type::MEMENTO:
             gameState = msg_handler.getGameStateFromMessage(message.getContent());
-            return MessageHandling::SC_Message("", MessageHandling::Message_Type::UNKNOWN);
+            gameState.currentTeam = team;
+            return;
         case MessageHandling::Message_Type::MOVE_REQUEST: {
-            Game::Move move = used_logic.getMove(gameState);
-            answer = MessageHandling::SC_Message(msg_handler.createMoveMessage(move, room_id), MessageHandling::Message_Type::MOVE_REQUEST);
-            return answer;
+            Game::Move move = used_logic->getMove(gameState);
+            tcp_client.send(msg_handler.createMoveMessage(move, room_id));
+            return;
             }
         case MessageHandling::Message_Type::RESULT:
             result = msg_handler.getResult(message);
-            break;
+            game_ended = true;
+            return;
         case MessageHandling::Message_Type::WELCOME_MESSAGE:
             msg_handler.getWelcomeData(message.getContent(), room_id, team);
-            break;
+            gameState.currentTeam = team;
+            return;
         default:
+            game_ended = true;
             break;
         }
 
-        return MessageHandling::SC_Message("", MessageHandling::Message_Type::UNKNOWN);
+        return;
     }
 
     void Game_Client::GameLoop() {
-        while (true) {
-            // Receive messages
+        while (!game_ended) {
             std::string msg = tcp_client.receive();
-
-            // Handle messages
-            std::vector<MessageHandling::SC_Message> messages = msg_handler.splitMessage(msg);
-            std::vector<MessageHandling::SC_Message> answers;
-            bool gotMoveRequest = false;
-            for (MessageHandling::SC_Message message : messages) {
-                if (message.getType() == MessageHandling::Message_Type::MOVE_REQUEST) {
-                    gotMoveRequest = true;
-                }
-                answers.push_back(handleMessage(message));
-            }
-
-            // Answer the server (or quit)
-            if (!gotMoveRequest) {
-                return;
-            }
-            for (MessageHandling::SC_Message answer : answers) {
-                if (answer.getType() != MessageHandling::Message_Type::UNKNOWN) {
-                    tcp_client.send(answer.getContent());
-                }
+            MessageHandling::SC_Message message = msg_handler.createMessage(msg);
+            handleMessage(message);
+            if (message.getType() == MessageHandling::Message_Type::RESULT || message.getType() == MessageHandling::Message_Type::UNKNOWN) {
+                std::cout << "#########+- RESULT -+#########\n" 
+                          << message.getContent() << std::endl
+                          << "##############################\n";
             }
         }
     }
 
     void Game_Client::Start(int argc, char *argv[]) {
         // #1 Connect to server
-        if (argc == 2) {
+        if (argc == 3) {
             std::string ip(argv[1]);
             unsigned short port = (unsigned short ) atoi(argv[2]);
             tcp_client.connect(ip, port);
         } else {
             tcp_client.connect();
         }
+
+        tcp_client.send(msg_handler.createJoinRequest());
         // #2 Gather game info
         std::string info = tcp_client.receive();
 
         handleMessage(MessageHandling::SC_Message(trimMessage(info), 
-                        MessageHandling::Message_Type::WELCOME_MESSAGE));
-        
-        // #3 Go into gameloop
+                MessageHandling::Message_Type::WELCOME_MESSAGE));
+
         GameLoop();
 
         // #4 Print ending information

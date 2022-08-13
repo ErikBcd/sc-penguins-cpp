@@ -14,6 +14,8 @@ namespace Client
     {
         Game::GameState gameState;
 
+        bool game_ended = false;
+
         /**
          * @brief The team this client belongs to.
          *        0 = ONE, 1 = TWO
@@ -21,7 +23,7 @@ namespace Client
          */
         bool team;
 
-        Logic::Logic used_logic;
+        Logic::Logic* used_logic;
 
         std::string room_id;
 
@@ -40,6 +42,6 @@ namespace Client
 
         std::string trimMessage(std::string &msg);
 
-        MessageHandling::SC_Message handleMessage(const MessageHandling::SC_Message& message);
+        void handleMessage(const MessageHandling::SC_Message& message);
     };  
 } // namespace Client

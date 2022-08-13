@@ -4,16 +4,10 @@
 #include "move.h"
 
 #include <vector>
+#include <iostream>
 
 #define BOARD_SIZE_X 8
 #define BOARD_SIZE_Y 8
-
-#define EMPTY 0
-#define ONE_FISH 1 
-#define TWO_FISHES 2 
-#define THREE_FISHES 3 
-#define PLAYER_ONE 4
-#define PLAYER_TWO 5
 
 namespace Game {
 	using namespace Coordinates;
@@ -36,8 +30,15 @@ namespace Game {
 		 * @param dir The direction.
 		 * @param moves Vector in which the moves will be stored.
 		 */
-		void getMovesInDirection(Coordinate &start, Coordinate dir, std::vector<Move>& moves);
+		void getMovesInDirection(Coordinate start, Coordinate dir, std::vector<Move>& moves);
 	public:
+		static const char EMPTY = 0;
+		static const char ONE_FISH = 1;
+		static const char TWO_FISHES = 2;
+		static const char THREE_FISHES = 3;
+		static const char PLAYER_ONE = 6;
+		static const char PLAYER_TWO = 7;
+
 		Board();
 
 		Board(const Board& other);

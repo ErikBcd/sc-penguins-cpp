@@ -16,4 +16,24 @@ namespace MessageHandling
     std::string SC_Message::getContent() const {
         return content;
     }
+
+    std::string SC_Message::typeAsString() const {
+        switch (type)
+        {
+        case Message_Type::MEMENTO :
+            return "MEMENTO";
+        case Message_Type::MOVE :
+            return "MOVE";
+        case Message_Type::MOVE_REQUEST :
+            return "MOVE_REQUEST";
+        case Message_Type::RESULT :
+            return "RESULT";
+        case Message_Type::UNKNOWN :
+            return "UNKNOWN";
+        case Message_Type::WELCOME_MESSAGE :
+            return "WELCOME_MESSAGE";
+        default:
+            return "WTF";
+        }
+    }
 } // namespace MessageHandler
