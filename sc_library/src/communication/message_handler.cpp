@@ -25,25 +25,6 @@ namespace MessageHandling
         return SC_Message(message, type);
     }
 
-    std::vector<SC_Message> MessageHandler::split_message(const std::string &message) {
-        std::string editedMsg = "<root>\n" + message + "</root>";
-        pugi::xml_document messageDocument;
-        messageDocument.load_string(editedMsg.data());
-        pugi::xml_node subMessages = messageDocument.child("root");
-
-        std::vector<SC_Message> messages;
-
-        for (pugi::xml_node sub : subMessages.children()) {
-            xml_string_writer writer;
-            sub.print(writer, "");
-            pugi::xml_node subsub = sub.child("data");
-            Message_Type type = get_type_from_tag(subsub.first_attribute().as_string());
-            messages.push_back(SC_Message(writer.result, type));
-        }
-
-        return messages;
-    }
-
     std::string MessageHandler::create_join_request() {
         return "<protocol>\n<join />";
     }

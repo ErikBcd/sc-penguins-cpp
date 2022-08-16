@@ -54,8 +54,6 @@ namespace MessageHandling {
              */
             SC_Message create_message(const std::string &message);
 
-            std::vector<SC_Message> split_message(const std::string &message);
-
             /**
              * @brief Creates a join request for the server
              * 
