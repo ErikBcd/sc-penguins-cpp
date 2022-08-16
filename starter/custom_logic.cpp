@@ -1,5 +1,4 @@
 #include "logic.h"
-#include <chrono>
 
 /**
  * @brief A subclass of a game logic.
