@@ -38,10 +38,10 @@ namespace Client
         void Start(int argc, char *argv[]);
 
     private:
-        void GameLoop();
+        void game_loop();
 
-        std::string trimMessage(std::string &msg);
+        std::string trim_message(std::string &msg);
 
-        void handleMessage(const MessageHandling::SC_Message& message);
+        void handle_message(const MessageHandling::SC_Message& message);
     };  
 } // namespace Client

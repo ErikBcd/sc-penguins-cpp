@@ -5,104 +5,104 @@ namespace Game
     GameState::GameState() {}
 
     GameState::GameState(GameState& other) {
-        this->board = Board(other.getBoard());
-        this->currentTeam = other.currentTeam;
-        this->turn = other.getTurn();
-        this->fishCount[0] = other.getFishesOne();
-        this->fishCount[1] = other.getFishesTwo();
-        this->setPenguins[0] = other.getPenguinsOnFieldOne();
-        this->setPenguins[1] = other.getPenguinsOnFieldTwo();
+        this->board = Board(other.get_board());
+        this->current_team = other.current_team;
+        this->turn = other.get_turn();
+        this->fish_count[0] = other.get_fishes_one();
+        this->fish_count[1] = other.get_fishes_two();
+        this->set_penguins[0] = other.get_penguins_one();
+        this->set_penguins[1] = other.get_penguins_two();
     }
 
-    std::vector<Move> GameState::getPossibleMoves(bool team) {
+    std::vector<Move> GameState::get_possible_moves(bool team) {
         std::vector<Move> moves;
-        if (setPenguins[team] != 4) {
-            board.getFieldsWithSingleFish(moves);
+        if (set_penguins[team] != 4) {
+            board.get_fields_with_single_fish(moves);
             return moves;
         }
 
 
-        std::vector<Coordinate> penguins = board.getPenguinPositions(team);
+        std::vector<Coordinate> penguins = board.get_penguin_positions(team);
         for (Coordinate c : penguins) {
-            board.getPossibleMovesFrom(c, moves);
+            board.get_possible_moves_from(c, moves);
         }
         return moves;
     }
 
-    std::vector<Move> GameState::getPossibleMoves() {
-        return getPossibleMoves(currentTeam);
+    std::vector<Move> GameState::get_possible_moves() {
+        return get_possible_moves(current_team);
     }
 
-    void GameState::performMove(Move move) {
+    void GameState::perform_move(Move move) {
         if (move.is_set_move) {
-            fishCount[currentTeam] += 1;
-            board.setField(move.destination, 4 + currentTeam);
-            setPenguins[currentTeam]--;
+            fish_count[current_team] += 1;
+            board.set_field(move.destination, 4 + current_team);
+            set_penguins[current_team]--;
         } else {
-            fishCount[currentTeam] += board.getField(move.destination);
-            board.setField(move.start, 0);
-            board.setField(move.destination, 4 + currentTeam);
+            fish_count[current_team] += board.get_field(move.destination);
+            board.set_field(move.start, 0);
+            board.set_field(move.destination, 4 + current_team);
         }
         turn++;
-        currentTeam = !currentTeam;
+        current_team = !current_team;
     }
 
     bool GameState::immovable(bool team) {
-        return getPossibleMoves(team).empty();
+        return get_possible_moves(team).empty();
     }
 
-    bool GameState::isOver() {
+    bool GameState::is_over() {
         return immovable(0) && immovable(1);
     }
 
     //// BEWARE, GETTERS AND SETTERS AHEAD ////
 
-    void GameState::setTurn(int newTurn) {
+    void GameState::set_turn(int newTurn) {
         this->turn = newTurn;
     }
 
-    int GameState::getTurn() {
+    int GameState::get_turn() {
         return this->turn;
     }
 
-    void GameState::setBoard(Board newBoard) {
+    void GameState::set_board(Board newBoard) {
         this->board = newBoard;
     }
 
-    Board GameState::getBoard() {
+    Board GameState::get_board() {
         return this->board;
     }
 
-    void GameState::setFishesOne(int count) {
-        this->fishCount[0] = count;
+    void GameState::set_fishes_one(int count) {
+        this->fish_count[0] = count;
     }
 
-    int GameState::getFishesOne() {
-        return this->fishCount[0];
+    int GameState::get_fishes_one() {
+        return this->fish_count[0];
     }
 
-    void GameState::setFishesTwo(int count) {
-        this->fishCount[1] = count;
+    void GameState::set_fishes_two(int count) {
+        this->fish_count[1] = count;
     }
 
-    int GameState::getFishesTwo() {
-        return this->fishCount[1];
+    int GameState::get_fishes_two() {
+        return this->fish_count[1];
     }
 
-    void GameState::setPenguinsOnFieldOne(int count) {
-        this->setPenguins[0] = count;
+    void GameState::set_penguins_one(int count) {
+        this->set_penguins[0] = count;
     }
 
-    int GameState::getPenguinsOnFieldOne() {
-        return this->setPenguins[0];
+    int GameState::get_penguins_one() {
+        return this->set_penguins[0];
     }
 
-    void GameState::setPenguinsOnFieldTwo(int count) {
-        this->setPenguins[1] = count;
+    void GameState::set_penguins_two(int count) {
+        this->set_penguins[1] = count;
     }
 
-    int GameState::getPenguinsOnFieldTwo() {
-        return this->setPenguins[1];
+    int GameState::get_penguins_two() {
+        return this->set_penguins[1];
     }
 
 } // namespace Game

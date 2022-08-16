@@ -11,6 +11,6 @@ namespace Logic {
     public:
         Logic(/* args */);
         
-        virtual Game::Move getMove(Game::GameState gamestate);
+        virtual Game::Move get_move(Game::GameState gamestate);
     };
 }

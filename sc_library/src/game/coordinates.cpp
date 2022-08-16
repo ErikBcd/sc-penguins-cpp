@@ -6,21 +6,21 @@ namespace Coordinates {
 	Coordinate::Coordinate(int xIn, int yIn, bool doubleHex) {
 		this->x = xIn;
 		this->y = yIn;
-		isDoubleHex = doubleHex;
+		is_double_hex = doubleHex;
 	}
 
-	Coordinate Coordinate::toDoubleHex() {
+	Coordinate Coordinate::to_double_hex() {
 		int xo = (y % 2 == 0) ? this->x * 2 : 1 + (this->x * 2);
 		return Coordinate(xo, this->y);
 	}
 
-	Coordinate Coordinate::toArrayCoordinate() {
+	Coordinate Coordinate::to_array_coordinate() {
 		int xo = (y % 2 == 0) ? this->x / 2 : 1 + (this->x / 2);
 		return Coordinates::Coordinate(this->x / 2, this->y, false);
 	}
 
 	Coordinate Coordinate::operator+(const Coordinate& other) {
-		if (this->isDoubleHex && !other.isDoubleHex) {
+		if (this->is_double_hex && !other.is_double_hex) {
 			throw "Error: Coordinates are of different types!";
 		}
 		return Coordinate(this->x + other.x, this->y + other.y);

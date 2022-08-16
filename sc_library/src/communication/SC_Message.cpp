@@ -9,15 +9,15 @@ namespace MessageHandling
         this->type = msg_type;
     }
 
-    Message_Type SC_Message::getType() const {
+    Message_Type SC_Message::get_type() const {
         return type;
     }
 
-    std::string SC_Message::getContent() const {
+    std::string SC_Message::get_content() const {
         return content;
     }
 
-    std::string SC_Message::typeAsString() const {
+    std::string SC_Message::type_as_string() const {
         switch (type)
         {
         case Message_Type::MEMENTO :

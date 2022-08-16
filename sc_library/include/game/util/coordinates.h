@@ -10,10 +10,10 @@ namespace Coordinates {
 
 		Coordinate(int xIn, int yIn, bool doubleHex = true);
 
-		bool isDoubleHex;
+		bool is_double_hex;
 
-		Coordinate toDoubleHex();
-		Coordinate toArrayCoordinate();
+		Coordinate to_double_hex();
+		Coordinate to_array_coordinate();
 
 		Coordinate operator+(const Coordinate& other);
 	};

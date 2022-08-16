@@ -21,7 +21,7 @@ namespace Game {
 		 * @return true 
 		 * @return false 
 		 */
-		bool isValidField(Coordinate c); 
+		bool is_valid_field(Coordinate c); 
 
 		/**
 		 * @brief Get the Moves from a position in a given direction.
@@ -30,7 +30,7 @@ namespace Game {
 		 * @param dir The direction.
 		 * @param moves Vector in which the moves will be stored.
 		 */
-		void getMovesInDirection(Coordinate start, Coordinate dir, std::vector<Move>& moves);
+		void get_moves_in_direction(Coordinate start, Coordinate dir, std::vector<Move>& moves);
 	public:
 		static const char EMPTY = 0;
 		static const char ONE_FISH = 1;
@@ -57,7 +57,7 @@ namespace Game {
 		 * 		   BOARD_SIZE_X and BOARD_SIZE_Y
 		 * @return false otherwise
 		 */
-		bool coordinateIsInBounds(Coordinates::Coordinate c);
+		bool coordinate_in_bounds(Coordinates::Coordinate c);
 
 		/**
 		 * @brief Gets the field from the board at the position of c.
@@ -65,7 +65,7 @@ namespace Game {
 		 * @param c Coordinates of the field.
 		 * @return Value of the field as a char.
 		 */
-		char getField(Coordinates::Coordinate c);
+		char get_field(Coordinates::Coordinate c);
 
 		/**
 		 * @brief Sets a field on the board to a new value.
@@ -73,7 +73,7 @@ namespace Game {
 		 * @param c The coordinate of the field.
 		 * @param field The new value.
 		 */
-		void setField(Coordinates::Coordinate c, char field);
+		void set_field(Coordinates::Coordinate c, char field);
 
 		/**
 		 * @brief Get the Possible Moves From a specific field.
@@ -81,14 +81,14 @@ namespace Game {
 		 * @param c The starting position.
 		 * @param moves A vector of moves that will be used as storage.
 		 */
-		void getPossibleMovesFrom(Coordinate c, std::vector<Move>& moves);
+		void get_possible_moves_from(Coordinate c, std::vector<Move>& moves);
 
 		/**
 		 * @brief Get the fields fith a single fish on them.
 		 * 
 		 * @param moves Set-Moves that land on fields with single fish on them.
 		 */
-		void getFieldsWithSingleFish(std::vector<Move>& moves);
+		void get_fields_with_single_fish(std::vector<Move>& moves);
 
 		/**
 		 * @brief Get the positions of the penguins of the given team
@@ -96,12 +96,12 @@ namespace Game {
 		 * @param team Team that the penguins belong to.
 		 * @return std::vector<Coordinate> Coordinates of the penguins. 
 		 */
-		std::vector<Coordinate> getPenguinPositions(bool team);
+		std::vector<Coordinate> get_penguin_positions(bool team);
 
 		/**
 		 * @brief Create a string that represents the board.
 		 * 
 		 */
-		std::string toString();
+		std::string to_string();
 	};
 }

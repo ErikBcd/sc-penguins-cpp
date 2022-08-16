@@ -11,16 +11,16 @@ namespace Game {
 
 		bool winner;
 
-		std::string playerOneReason;
-		std::string playerOneCause;
-		int playerOneWinningPoints;
-		int playerOneAveragePoints;
+		std::string player_one_Reason;
+		std::string player_one_cause;
+		int player_one_winning_points;
+		int player_one_average_points;
 
-		std::string playerTwoReason;
-		std::string playerTwoCause;
-		int playerTwoWinningPoints;
-		int playerTwoAveragePoints;
+		std::string player_two_reason;
+		std::string player_two_cause;
+		int player_two_winning_points;
+		int player_two_average_points;
 
-		std::string toString();
+		std::string to_string();
 	};
 }

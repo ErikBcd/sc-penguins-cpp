@@ -10,8 +10,8 @@ namespace Game {
 	private:
 		Board board;
 		int turn;
-		int fishCount[2];
-		int setPenguins[2];
+		int fish_count[2];
+		int set_penguins[2];
 	public:
 		GameState();
 		GameState(GameState& other);
@@ -21,7 +21,7 @@ namespace Game {
 		 * 
 		 * @return std::vector<Move> All moves that can be made.
 		 */
-		std::vector<Move> getPossibleMoves();
+		std::vector<Move> get_possible_moves();
 
 		/**
 		 * @brief Gets all Possible Moves for the current team 
@@ -29,7 +29,7 @@ namespace Game {
 		 * @param team The team for which the moves will be searched.
 		 * @return std::vector<Move> All moves that can be made.
 		 */
-		std::vector<Move> getPossibleMoves(bool team);
+		std::vector<Move> get_possible_moves(bool team);
 
 		/**
 		 * @brief Performs a move on the current gamestate.
@@ -37,10 +37,10 @@ namespace Game {
 		 * 
 		 * @param move 
 		 */
-		void performMove(Move move);
+		void perform_move(Move move);
 
 		/** @brief 0 = ONE, 1 = TWO */
-		bool currentTeam;
+		bool current_team;
 
 		/**
 		 * @brief Checks if the given team can still move.
@@ -55,48 +55,48 @@ namespace Game {
 		 * 
 		 * @return 'true' if no team can move, false otherwise.
 		 */
-		bool isOver();
+		bool is_over();
 
-		void setTurn(int newTurn);
+		void set_turn(int newTurn);
 
-		int getTurn();
+		int get_turn();
 
-		void setBoard(Board newBoard);
+		void set_board(Board newBoard);
 
-		Board getBoard();
+		Board get_board();
 
-		void setFishesOne(int count);
+		void set_fishes_one(int count);
 
-		int getFishesOne();
+		int get_fishes_one();
 
-		void setFishesTwo(int count);
+		void set_fishes_two(int count);
 
-		int getFishesTwo();
+		int get_fishes_two();
 
 		/**
 		 * @brief Returns the number of penguins on the field of player one.
 		 * 
 		 */
-		int getPenguinsOnFieldOne();
+		int get_penguins_one();
 
 		/**
 		 * @brief Sets the number of penguins on the field of player one.
 		 * 
 		 * @param count Number of penguins.
 		 */
-		void setPenguinsOnFieldOne(int count);
+		void set_penguins_one(int count);
 
 		/**
 		 * @brief Returns the number of penguins on the field of player two.
 		 * 
 		 */
-		int getPenguinsOnFieldTwo();
+		int get_penguins_two();
 
 		/**
 		 * @brief Sets the number of penguins on the field of player two.
 		 * 
 		 * @param count Number of penguins.
 		 */
-		void setPenguinsOnFieldTwo(int count);
+		void set_penguins_two(int count);
 	};
 }

@@ -29,29 +29,29 @@ namespace MessageHandling {
         SC_Message(const std::string &msg_content, const Message_Type &msg_type);
         SC_Message();
 
-        Message_Type getType() const;
-        std::string getContent() const;
-        std::string typeAsString() const;
+        Message_Type get_type() const;
+        std::string get_content() const;
+        std::string type_as_string() const;
     };
     
     class MessageHandler {
         public:
             MessageHandler();
             
-            Message_Type getMessageTypeFromTag(const std::string &tagname);
+            Message_Type get_type_from_tag(const std::string &tagname);
 
-            SC_Message createMessage(const std::string &message);
+            SC_Message create_message(const std::string &message);
 
-            std::vector<SC_Message> splitMessage(const std::string &message);
+            std::vector<SC_Message> split_message(const std::string &message);
 
-            std::string createJoinRequest();
+            std::string create_join_request();
 
-            std::string createMoveMessage(const Game::Move &move, const std::string &roomID);
+            std::string create_move_message(const Game::Move &move, const std::string &roomID);
 
-            void getWelcomeData(const std::string &message, std::string &room_ID, bool &team);
+            void get_welcome_data(const std::string &message, std::string &room_ID, bool &team);
 
-            Game::GameState getGameStateFromMessage(const std::string &message);
+            Game::GameState get_GameState_from_message(const std::string &message);
 
-            Game::GameResult getResult(const SC_Message &msg);
+            Game::GameResult get_result(const SC_Message &msg);
     };
 }
