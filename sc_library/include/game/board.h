@@ -97,5 +97,11 @@ namespace Game {
 		 * @return std::vector<Coordinate> Coordinates of the penguins. 
 		 */
 		std::vector<Coordinate> getPenguinPositions(bool team);
+
+		/**
+		 * @brief Create a string that represents the board.
+		 * 
+		 */
+		std::string toString();
 	};
 }

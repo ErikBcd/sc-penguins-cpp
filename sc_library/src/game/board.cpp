@@ -112,4 +112,16 @@ namespace Game {
 
 		return positions;
 	}
+
+	std::string Board::toString() {
+		std::string s;
+		for (size_t x = 0; x < BOARD_SIZE_X; x++) {
+			for (size_t y = 0; y < BOARD_SIZE_Y; y++) {
+				s += 48 + board[y][x];
+			}
+			s += '\n';
+		}
+
+		return s;
+	}
 }
