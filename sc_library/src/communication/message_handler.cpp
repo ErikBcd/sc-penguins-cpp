@@ -102,8 +102,8 @@ namespace MessageHandling
         }
 
         gameState.setBoard(b);
-        gameState.setUnsetPenguinsOne(setPenguinsOne);
-        gameState.setUnsetPenguinsTwo(setPenguinsTwo);
+        gameState.setPenguinsOnFieldOne(setPenguinsOne);
+        gameState.setPenguinsOnFieldTwo(setPenguinsTwo);
 
         x = 0;
         for (pugi::xml_node n : state.child("fishes").children()) {

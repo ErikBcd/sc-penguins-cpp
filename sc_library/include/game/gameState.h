@@ -73,12 +73,30 @@ namespace Game {
 
 		int getFishesTwo();
 
-		int getUnsetPenguinsOne();
+		/**
+		 * @brief Returns the number of penguins on the field of player one.
+		 * 
+		 */
+		int getPenguinsOnFieldOne();
 
-		void setUnsetPenguinsOne(int count);
+		/**
+		 * @brief Sets the number of penguins on the field of player one.
+		 * 
+		 * @param count Number of penguins.
+		 */
+		void setPenguinsOnFieldOne(int count);
 
-		int getUnsetPenguinsTwo();
+		/**
+		 * @brief Returns the number of penguins on the field of player two.
+		 * 
+		 */
+		int getPenguinsOnFieldTwo();
 
-		void setUnsetPenguinsTwo(int count);
+		/**
+		 * @brief Sets the number of penguins on the field of player two.
+		 * 
+		 * @param count Number of penguins.
+		 */
+		void setPenguinsOnFieldTwo(int count);
 	};
 }

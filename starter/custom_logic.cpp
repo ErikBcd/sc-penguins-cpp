@@ -10,7 +10,6 @@ class RandomLogic : public Logic::Logic
 {
 private:
 public:
-    //RandomLogic() : Logic::Logic() { }
     
     /**
      * @brief This method will be called once the server requests a move.
@@ -27,6 +26,28 @@ public:
             throw;
         }
 
+        /// TESTING AREA
+        std::cout << "====================================================\n";
+        std::cout <<    "OLD GameState Test\n" << 
+                        "Turn: " << gameState.getTurn() << 
+                        "\nCurrent Team: " << ((gameState.currentTeam) ? "TWO" : "ONE") <<
+                        "\nFishCount ONE=" << gameState.getFishesOne() <<
+                        "\nPenguins Set ONE=" << gameState.getPenguinsOnFieldOne() <<
+                        "\nFishCount TWO=" << gameState.getFishesTwo() <<
+                        "\nPenguins Set TWO=" << gameState.getPenguinsOnFieldTwo() << std::endl; 
+        std::cout << "OLD Board:\n" << gameState.getBoard().toString();
+
+        std::cout << "====================================================\n";
+        
+        gameState.performMove(possibleMoves[0]);
+        std::cout <<    "NEW GameState Test\n" << 
+                        "Turn: " << gameState.getTurn() << 
+                        "\nCurrent Team: " << ((gameState.currentTeam) ? "TWO" : "ONE") <<
+                        "\nFishCount ONE=" << gameState.getFishesOne() <<
+                        "\nPenguins Set ONE=" << gameState.getPenguinsOnFieldOne() <<
+                        "\nFishCount TWO=" << gameState.getFishesTwo() <<
+                        "\nPenguins Set TWO=" << gameState.getPenguinsOnFieldTwo() << std::endl; 
+        std::cout << "NEW Board:\n" << gameState.getBoard().toString();
         // Return the chosen move, in this case the first move in the vector.
         return possibleMoves[0];
     }

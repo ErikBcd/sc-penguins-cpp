@@ -10,8 +10,8 @@ namespace Game
         this->turn = other.getTurn();
         this->fishCount[0] = other.getFishesOne();
         this->fishCount[1] = other.getFishesTwo();
-        this->setPenguins[0] = other.getUnsetPenguinsOne();
-        this->setPenguins[1] = other.getUnsetPenguinsTwo();
+        this->setPenguins[0] = other.getPenguinsOnFieldOne();
+        this->setPenguins[1] = other.getPenguinsOnFieldTwo();
     }
 
     std::vector<Move> GameState::getPossibleMoves(bool team) {
@@ -89,19 +89,19 @@ namespace Game
         return this->fishCount[1];
     }
 
-    void GameState::setUnsetPenguinsOne(int count) {
+    void GameState::setPenguinsOnFieldOne(int count) {
         this->setPenguins[0] = count;
     }
 
-    int GameState::getUnsetPenguinsOne() {
+    int GameState::getPenguinsOnFieldOne() {
         return this->setPenguins[0];
     }
 
-    void GameState::setUnsetPenguinsTwo(int count) {
+    void GameState::setPenguinsOnFieldTwo(int count) {
         this->setPenguins[1] = count;
     }
 
-    int GameState::getUnsetPenguinsTwo() {
+    int GameState::getPenguinsOnFieldTwo() {
         return this->setPenguins[1];
     }
 
