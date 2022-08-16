@@ -76,7 +76,7 @@ namespace MessageHandling
         messageDocument.load_string(message.data());
         pugi::xml_node state = messageDocument.child("room").child("data").child("state");
 
-        gameState.setTurn(state.first_attribute().as_int());
+        gameState.setTurn(state.attribute("turn").as_int());
         
         pugi::xml_node board = state.child("board");
         Board b;
