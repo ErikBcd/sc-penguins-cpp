@@ -16,7 +16,7 @@ public:
      * @param gameState The current state of the game. 
      * @return Game::Move 
      */
-    Game::Move get_move(Game::GameState gameState) {
+    Game::Move get_move(Game::GameState& gameState) {
         // Get all moves that are currently possible.
         std::vector<Game::Move> possibleMoves = gameState.get_possible_moves();
 

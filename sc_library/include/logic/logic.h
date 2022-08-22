@@ -18,6 +18,6 @@ namespace Logic {
          * @param gamestate The current gamestate
          * @return Game::Move Set move or drag move.
          */
-        virtual Game::Move get_move(Game::GameState gamestate);
+        virtual Game::Move get_move(Game::GameState& gamestate);
     };
 }

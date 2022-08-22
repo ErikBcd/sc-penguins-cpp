@@ -4,7 +4,7 @@ namespace Logic
 {
     Logic::Logic() {};
 
-    Game::Move Logic::get_move(Game::GameState gamestate) {
+    Game::Move Logic::get_move(Game::GameState& gamestate) {
         // Get all moves that are currently possible.
         std::vector<Game::Move> possibleMoves = gamestate.get_possible_moves();
 

@@ -36,3 +36,4 @@ void Client::Game_Client::Start(int argc, char *argv[]);
 %include "../sc_library/include/logic/logic.h"
 
 %template(Move_Vector) std::vector<Game::Move>;
+%template(Coordinate_Vector) std::vector<Coordinates::Coordinate>;
