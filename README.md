@@ -9,7 +9,7 @@ This project is still not entirely finished. The client is able to fully play ga
  * pugiXML (included)
  * a C++11 compatible compiler
 
-## Building:
+## Building for C++:
 First, create and change to a build directory, for example build/
 
 `mkdir build && cd build`
@@ -23,6 +23,25 @@ Now you can build the project
 `make`
 
 The executable will be created in the bin directory.
+
+## Building for Python
+
+# WARNING: Building for python does not work right now because of some error that I don't know how to fix. If you have an idea, please create an issue or even a pull request! I am going insane because of this
+
+This project is using swig for python bindings, the swig file and it's CMakeLists are located in python_starter/
+
+
+First, create and change to a build directory, for example build/
+
+`mkdir build && cd build`
+
+Then, create the cmake project with the python flag:
+
+`cmake .. -DBUILD_PYTHON=ON`
+
+Now you can build the project
+
+`make`
 
 ## Usage
 
