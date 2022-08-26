@@ -1,4 +1,4 @@
-project (SC_2022_LIB)
+project (SC_PENGUINS_LIB)
 
 include(sourcelist.cmake)
 
@@ -7,9 +7,9 @@ add_library(${PROJECT_NAME} SHARED ${sources})
 add_library(SC ALIAS ${PROJECT_NAME})
 
 if(MSVC)
-  target_compile_options(SC_2022_LIB PRIVATE /W4)
+  target_compile_options(SC_PENGUINS_LIB PRIVATE /W4)
 else()
-  target_compile_options(SC_2022_LIB PRIVATE -Wall -Wextra -Wpedantic)
+  target_compile_options(SC_PENGUINS_LIB PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
 target_include_directories( ${PROJECT_NAME}

@@ -1,4 +1,4 @@
-# sc-22-cpp-client
+# sc-penguins-cpp
 A client-library for the Software Challenge 2022, written in C++
 
 ## Disclaimer
@@ -54,5 +54,5 @@ When compiling for Python, these files will be copied to `bin/python_wrapper/` w
 
 ## Usage
 
-Run the client via `SC_2022_STARTER`
-If you want to specify an IP adress and a port number, you can do so via `SC_2022_STARTER IP PORT`.
+Run the client via `SC_PENGUINS_STARTER`
+If you want to specify an IP adress and a port number, you can do so via `SC_PENGUINS_STARTER IP PORT`.

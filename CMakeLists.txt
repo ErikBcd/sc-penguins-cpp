@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.18)
 
-project(SC_2022_CPP)
+project(SC_PENGUINS_CPP)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
@@ -13,7 +13,6 @@ option(BUILD_PYTHON "BUILD_PYTHON" OFF)
 add_subdirectory(sc_library)
 
 if (BUILD_PYTHON)
-    #add_subdirectory(python_starter)
     add_subdirectory(python_wrapper)
     
 else()

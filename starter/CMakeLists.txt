@@ -1,4 +1,4 @@
-project(SC_2022_STARTER)
+project(SC_PENGUINS_STARTER)
 
 add_executable(${PROJECT_NAME} custom_logic.cpp starter.cpp )
 
