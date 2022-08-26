@@ -16,6 +16,9 @@ namespace Game {
 		GameState();
 		GameState(GameState& other);
 
+		/** @brief 0 = ONE, 1 = TWO */
+		bool current_team;
+
 		/**
 		 * @brief Gets all Possible Moves for the current team 
 		 * 
@@ -38,9 +41,6 @@ namespace Game {
 		 * @param move 
 		 */
 		void perform_move(Move move);
-
-		/** @brief 0 = ONE, 1 = TWO */
-		bool current_team;
 
 		/**
 		 * @brief Checks if the given team can still move.

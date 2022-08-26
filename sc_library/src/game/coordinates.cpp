@@ -15,7 +15,6 @@ namespace Coordinates {
 	}
 
 	Coordinate Coordinate::to_array_coordinate() {
-		int xo = (y % 2 == 0) ? this->x / 2 : 1 + (this->x / 2);
 		return Coordinates::Coordinate(this->x / 2, this->y, false);
 	}
 
