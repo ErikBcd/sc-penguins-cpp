@@ -17,7 +17,7 @@ target_link_libraries(SC_PY_WRAPPER ${PythonLibs})
 add_custom_command(
     TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/python_wrapper
+    ${CMAKE_SOURCE_DIR}/python_starter
     ${EXECUTABLE_OUTPUT_PATH}/python_wrapper
 )
 
