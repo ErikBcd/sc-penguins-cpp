@@ -66,17 +66,11 @@ namespace Client {
         }
     }
 
-    void Game_Client::Start(int argc, char *argv[]) {
+    void Game_Client::Start(std::string ip, unsigned short port) {
         // #1 Connect to server
-        if (argc == 3) {
-            std::string ip(argv[1]);
-            unsigned short port = (unsigned short ) atoi(argv[2]);
-            tcp_client.connect(ip, port);
-        } else {
-            tcp_client.connect();
-        }
-
+        tcp_client.connect(ip, port);
         tcp_client.send(msg_handler.create_join_request());
+        
         // #2 Gather game info
         std::string info = tcp_client.receive();
 

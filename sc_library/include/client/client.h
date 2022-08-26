@@ -69,7 +69,7 @@ namespace Client
          * @param argc Number of command line arguments
          * @param argv Array of command line arguments
          */
-        void Start(int argc, char *argv[]);
+        void Start(std::string ip, unsigned short port);
 
     private:
         /**
