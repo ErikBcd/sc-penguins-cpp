@@ -7,14 +7,7 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_SHARED_MODULE_PREFIX "")
 
-
-option(BUILD_PYTHON "BUILD_PYTHON" OFF)
-
 add_subdirectory(sc_library)
 
-if (BUILD_PYTHON)
-    add_subdirectory(python_wrapper)
-    
-else()
-    add_subdirectory(starter)
-endif()
+
+add_subdirectory(starter)

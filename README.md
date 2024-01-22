@@ -1,8 +1,11 @@
 # sc-penguins-cpp
-A client-library for the Software Challenge 2022, written in C++
+A client-library for the Software Challenge, written in C++
+Originally used for the Saison in 2020/23, but can be used if this game comes back at a later point.
+
+If you are interested in the Software Challenge, take a look at our [Website](https://software-challenge.de)!
 
 ## Disclaimer
-This project is still not entirely finished. The client is able to fully play games without crashing, but various functions are not yet implemented or tested fully! If you run into issues, please write an issue or contact me on Discord (Estugon#3234).
+If you run into issues, please write an issue or contact me on Discord (@Estugon).
 
 ## Dependencies:
  * Boost
@@ -24,33 +27,12 @@ Now you can build the project
 
 The executable will be created in the bin directory.
 
-## Building for Python
-
-# Warning: As of now, the python bindings are not fully finished!
-
-First, create and change to a build directory, for example `build/`
-
-`mkdir build && cd build`
-
-Then, create the cmake project with the python flag:
-
-`cmake .. -DBUILD_PYTHON=ON`
-
-Now you can build the project
-
-`make`
-
-Your starter, logic and libraries are now located in `bin/python_wrapper`
-
 ## Creating your own logic
 
-### C++
 Either edit the template logic in `starter/custom_logic.cpp`, or create your own file and include it in `starter/starter.cpp`.
 When compiling for C++, these files will be included and the logic defined in starter.cpp will be used.
 
-### Python
-Either edit the template logic in `python_starter/custom_logic.py`, or create your own file and import it in `python_starter/starter.py`.
-When compiling for Python, these files will be copied to `bin/python_wrapper/` where the library file will be placed.
+To get started, you want to look into the `sc_library/include/game/gameState.h` file, in there are basic functions that will help you create your own logic, including documentation.
 
 ## Usage
 
